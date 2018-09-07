@@ -1,0 +1,48 @@
+---
+title: "Lab00 QTM 151"
+author: "Carolyn Armstrong"
+date: "8/31/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+
+## Import dataset
+```{r}
+tips<-read.csv("tips.csv")
+```
+
+## Explore
+```{r}
+head(tips)
+```
+
+## What is the distribution of tip?
+```{r}
+ggplot(tips,aes(x=tip))+
+  geom_histogram(bins=30)
+```
+
+## What is the relationship between totbill and tip?
+```{r}
+ggplot(tips, aes(x=totbill, y=tip))+
+  geom_point(aes(col=smoker))+
+  facet_grid(~sex)
+```
+
+## .. between totbill and tip broken down by sex and time ?
+```{r}
+ggplot(tips, aes(x=totbill, y=tip))+
+  geom_point()+
+  facet_grid(sex~time)
+```
+
+```{r}
+qplot(tip, geom = "histogram", binwidth=0.3, data=tips)
+```
+
+
+
